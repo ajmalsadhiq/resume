@@ -3,12 +3,14 @@
 import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
 import { ExternalLink, Github, Folder, Code } from "lucide-react"
+import Image from "next/image"
 
 interface Project {
   title: string
   description: string
   details: string[]
   tech: string[]
+  image: string
   color: string
   github?: string
   live?: string
@@ -36,6 +38,7 @@ const featuredProjects: Project[] = [
       "Features dynamic preview comparisons and direct export to high-fidelity PDF documentation"
     ],
     tech: ["React", "Vite", "React Router 7", "Puter.js AI", "jsPDF", "Tailwind CSS v4"],
+    image: "/images/planora.svg",
     color: "from-[#8B5CF6] to-[#EC4899]",
     github: "https://github.com/ajmalsadhiq/Planora",
     live: "https://planora-pi.vercel.app/",
@@ -51,6 +54,7 @@ const featuredProjects: Project[] = [
       "Stored and queried document chunks using Qdrant vector database with high semantic relevance"
     ],
     tech: ["n8n", "Gemini API", "Qdrant Vector DB", "Python", "JSON"],
+    image: "/images/rag-chatbot.svg",
     color: "from-[#0D9488] to-[#3B82F6]",
     github: "https://github.com/ajmalsadhiq/RAG-Chatbot-with-n8n-Gemini-Qdrant",
     category: "AI & ML",
@@ -65,6 +69,7 @@ const featuredProjects: Project[] = [
       "Implemented reactive streams with RxJS to handle user dashboard and benefit actions"
     ],
     tech: ["Angular 21", "TypeScript", "Tailwind CSS v4", "RxJS", "RTL/LTR Layouts"],
+    image: "/images/msspf.svg",
     color: "from-[#9E9B46] to-[#3E321A]",
     github: "https://github.com/ajmalsadhiq/mssf-portal",
     live: "https://mssf-portal.vercel.app/",
@@ -80,6 +85,7 @@ const featuredProjects: Project[] = [
       "Implemented visual manipulation utilities and packaged standard APK builds for Android"
     ],
     tech: ["React Native", "Expo", "Appwrite", "TypeScript", "NativeWind"],
+    image: "/images/autovault.svg",
     color: "from-[#F97316] to-[#EF4444]",
     github: "https://github.com/ajmalsadhiq/Auto-Vault",
     category: "Mobile",
@@ -94,6 +100,7 @@ const featuredProjects: Project[] = [
       "Secured application flows using Clerk Authentication alongside custom guest mode entries"
     ],
     tech: ["Next.js 14", "Stream SDK", "Clerk Auth", "TypeScript", "Tailwind CSS"],
+    image: "/images/meetflow.svg",
     color: "from-[#6366F1] to-[#4F46E5]",
     github: "https://github.com/ajmalsadhiq/MeetFlow",
     live: "https://meet-flow-psi.vercel.app",
@@ -109,6 +116,7 @@ const featuredProjects: Project[] = [
       "Rendered overlay menus showing FPS indicators and activated gesture states"
     ],
     tech: ["Python", "MediaPipe", "OpenCV", "PyAutoGUI"],
+    image: "/images/handgesture.svg",
     color: "from-[#10B981] to-[#059669]",
     github: "https://github.com/ajmalsadhiq/handgesture-control-mouse",
     category: "AI & ML",
@@ -276,22 +284,21 @@ function ProjectCard({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Decorative Gradient Canvas Cover */}
-      <div className="relative flex-1 overflow-hidden rounded-xl border border-border">
-        <div className={`relative aspect-video w-full overflow-hidden bg-gradient-to-br ${project.color} flex flex-col items-center justify-center p-6 text-white`}>
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white/10 via-transparent to-black/30" />
+      {/* Decorative Image Cover */}
+      <div className="relative flex-1 overflow-hidden rounded-xl border border-border bg-card">
+        <div className="relative aspect-video w-full overflow-hidden">
           <motion.div
             animate={isHovered ? { scale: 1.05 } : { scale: 1 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="flex flex-col items-center text-center justify-center relative z-10"
+            className="h-full w-full relative"
           >
-            <Folder className="h-12 w-12 mb-3 opacity-95 text-white/90" />
-            <span className="text-2xl font-bold tracking-tight drop-shadow-lg text-white">
-              {project.title}
-            </span>
-            <span className="mt-2.5 rounded-full bg-white/15 px-3 py-1 font-mono text-[11px] font-bold text-white uppercase tracking-wider backdrop-blur-md border border-white/10">
-              {project.category}
-            </span>
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           </motion.div>
 
           {/* Action buttons on hover */}
