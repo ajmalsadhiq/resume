@@ -290,62 +290,60 @@ function ProjectCard({
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Decorative Image Cover */}
-      <div className="relative flex-1 overflow-hidden rounded-xl border border-border bg-card">
-        <div className="relative aspect-video w-full overflow-hidden">
-          <motion.div
-            animate={isHovered ? { scale: 1.05 } : { scale: 1 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="h-full w-full relative"
-          >
-            <Image
-              src={imgSrc}
-              alt={project.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-              onError={() => {
-                if (imgSrc.endsWith('.png')) {
-                  setImgSrc(project.image.replace('.png', '.svg'))
-                }
-              }}
-            />
-          </motion.div>
+      <div className="relative flex-1 overflow-hidden rounded-xl border border-border bg-muted aspect-video lg:aspect-auto lg:min-h-[350px]">
+        <motion.div
+          animate={isHovered ? { scale: 1.05 } : { scale: 1 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={imgSrc}
+            alt={project.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+            onError={() => {
+              if (imgSrc.endsWith('.png')) {
+                setImgSrc(project.image.replace('.png', '.svg'))
+              }
+            }}
+          />
+        </motion.div>
 
-          {/* Action buttons on hover */}
-          <motion.div
-            className="absolute inset-0 flex items-center justify-center gap-4 bg-black/45 backdrop-blur-[4px] z-20"
-            initial={{ opacity: 0 }}
-            animate={isHovered ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            {project.github && (
-              <motion.a
-                href={project.github}
-                target="_blank"
-                rel="noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 rounded-xl bg-background/95 px-4 py-2.5 text-xs font-semibold text-foreground shadow-xl border border-border/40 backdrop-blur-md hover:bg-primary hover:text-primary-foreground hover:border-transparent transition-all duration-200"
-              >
-                <Github className="h-4 w-4" />
-                Source Code
-              </motion.a>
-            )}
-            {project.live && (
-              <motion.a
-                href={project.live}
-                target="_blank"
-                rel="noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 rounded-xl bg-background/95 px-4 py-2.5 text-xs font-semibold text-foreground shadow-xl border border-border/40 backdrop-blur-md hover:bg-primary hover:text-primary-foreground hover:border-transparent transition-all duration-200"
-              >
-                <ExternalLink className="h-4 w-4" />
-                Live Demo
-              </motion.a>
-            )}
-          </motion.div>
-        </div>
+        {/* Action buttons on hover */}
+        <motion.div
+          className="absolute inset-0 flex items-center justify-center gap-4 bg-black/45 backdrop-blur-[4px] z-20"
+          initial={{ opacity: 0 }}
+          animate={isHovered ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.2 }}
+        >
+          {project.github && (
+            <motion.a
+              href={project.github}
+              target="_blank"
+              rel="noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 rounded-xl bg-background/95 px-4 py-2.5 text-xs font-semibold text-foreground shadow-xl border border-border/40 backdrop-blur-md hover:bg-primary hover:text-primary-foreground hover:border-transparent transition-all duration-200"
+            >
+              <Github className="h-4 w-4" />
+              Source Code
+            </motion.a>
+          )}
+          {project.live && (
+            <motion.a
+              href={project.live}
+              target="_blank"
+              rel="noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="flex items-center gap-2 rounded-xl bg-background/95 px-4 py-2.5 text-xs font-semibold text-foreground shadow-xl border border-border/40 backdrop-blur-md hover:bg-primary hover:text-primary-foreground hover:border-transparent transition-all duration-200"
+            >
+              <ExternalLink className="h-4 w-4" />
+              Live Demo
+            </motion.a>
+          )}
+        </motion.div>
       </div>
 
       {/* Content */}
