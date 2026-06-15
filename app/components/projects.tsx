@@ -85,7 +85,7 @@ const featuredProjects: Project[] = [
       "Implemented visual manipulation utilities and packaged standard APK builds for Android"
     ],
     tech: ["React Native", "Expo", "Appwrite", "TypeScript", "NativeWind"],
-    image: "/images/autovault.png",
+    image: "/images/auto-vault.png",
     color: "from-[#F97316] to-[#EF4444]",
     github: "https://github.com/ajmalsadhiq/Auto-Vault",
     category: "Mobile",
