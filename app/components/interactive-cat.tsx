@@ -177,8 +177,8 @@ export default function InteractiveCat() {
         className="relative"
       >
         <svg
-          width="180"
-          height="180"
+          width="260"
+          height="260"
           viewBox="0 0 85 90"
           onClick={handlePet}
           onDoubleClick={handleTickle}
