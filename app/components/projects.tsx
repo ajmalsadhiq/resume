@@ -1,7 +1,7 @@
 "use client"
 
 import { motion, useInView } from "framer-motion"
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import { ExternalLink, Github, Folder, Code } from "lucide-react"
 import Image from "next/image"
 
@@ -38,7 +38,7 @@ const featuredProjects: Project[] = [
       "Features dynamic preview comparisons and direct export to high-fidelity PDF documentation"
     ],
     tech: ["React", "Vite", "React Router 7", "Puter.js AI", "jsPDF", "Tailwind CSS v4"],
-    image: "/images/planora.svg",
+    image: "/images/planora.png",
     color: "from-[#8B5CF6] to-[#EC4899]",
     github: "https://github.com/ajmalsadhiq/Planora",
     live: "https://planora-pi.vercel.app/",
@@ -54,7 +54,7 @@ const featuredProjects: Project[] = [
       "Stored and queried document chunks using Qdrant vector database with high semantic relevance"
     ],
     tech: ["n8n", "Gemini API", "Qdrant Vector DB", "Python", "JSON"],
-    image: "/images/rag-chatbot.svg",
+    image: "/images/rag-chatbot.png",
     color: "from-[#0D9488] to-[#3B82F6]",
     github: "https://github.com/ajmalsadhiq/RAG-Chatbot-with-n8n-Gemini-Qdrant",
     category: "AI & ML",
@@ -69,7 +69,7 @@ const featuredProjects: Project[] = [
       "Implemented reactive streams with RxJS to handle user dashboard and benefit actions"
     ],
     tech: ["Angular 21", "TypeScript", "Tailwind CSS v4", "RxJS", "RTL/LTR Layouts"],
-    image: "/images/msspf.svg",
+    image: "/images/msspf.png",
     color: "from-[#9E9B46] to-[#3E321A]",
     github: "https://github.com/ajmalsadhiq/mssf-portal",
     live: "https://mssf-portal.vercel.app/",
@@ -85,7 +85,7 @@ const featuredProjects: Project[] = [
       "Implemented visual manipulation utilities and packaged standard APK builds for Android"
     ],
     tech: ["React Native", "Expo", "Appwrite", "TypeScript", "NativeWind"],
-    image: "/images/autovault.svg",
+    image: "/images/autovault.png",
     color: "from-[#F97316] to-[#EF4444]",
     github: "https://github.com/ajmalsadhiq/Auto-Vault",
     category: "Mobile",
@@ -100,7 +100,7 @@ const featuredProjects: Project[] = [
       "Secured application flows using Clerk Authentication alongside custom guest mode entries"
     ],
     tech: ["Next.js 14", "Stream SDK", "Clerk Auth", "TypeScript", "Tailwind CSS"],
-    image: "/images/meetflow.svg",
+    image: "/images/meetflow.png",
     color: "from-[#6366F1] to-[#4F46E5]",
     github: "https://github.com/ajmalsadhiq/MeetFlow",
     live: "https://meet-flow-psi.vercel.app",
@@ -116,7 +116,7 @@ const featuredProjects: Project[] = [
       "Rendered overlay menus showing FPS indicators and activated gesture states"
     ],
     tech: ["Python", "MediaPipe", "OpenCV", "PyAutoGUI"],
-    image: "/images/handgesture.svg",
+    image: "/images/handgesture.png",
     color: "from-[#10B981] to-[#059669]",
     github: "https://github.com/ajmalsadhiq/handgesture-control-mouse",
     category: "AI & ML",
@@ -274,6 +274,11 @@ function ProjectCard({
 }) {
   const [isHovered, setIsHovered] = useState(false)
   const isReversed = index % 2 !== 0
+  const [imgSrc, setImgSrc] = useState(project.image)
+
+  useEffect(() => {
+    setImgSrc(project.image)
+  }, [project.image])
 
   return (
     <motion.div
@@ -293,11 +298,16 @@ function ProjectCard({
             className="h-full w-full relative"
           >
             <Image
-              src={project.image}
+              src={imgSrc}
               alt={project.title}
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
+              onError={() => {
+                if (imgSrc.endsWith('.png')) {
+                  setImgSrc(project.image.replace('.png', '.svg'))
+                }
+              }}
             />
           </motion.div>
 
