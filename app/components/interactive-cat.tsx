@@ -104,22 +104,26 @@ export default function InteractiveCat() {
           <motion.div
             key={`heart-${petCount}-${i}`}
             className="pointer-events-none absolute text-lg"
+            style={{
+              left: `${35 + Math.random() * 30}%`,
+              top: `${30 + Math.random() * 20}%`,
+            }}
             initial={{
               opacity: 1,
-              x: 40 + Math.random() * 40,
-              y: 20,
               scale: 0,
+              x: 0,
+              y: 0,
             }}
             animate={{
               opacity: 0,
-              y: -60 - Math.random() * 40,
-              x: 20 + Math.random() * 80,
-              scale: 1,
+              y: -80 - Math.random() * 50,
+              x: (Math.random() - 0.5) * 80,
+              scale: 1.2,
               rotate: Math.random() * 40 - 20,
             }}
             transition={{ duration: 1.2, delay: i * 0.1 }}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="hsl(var(--primary))" className="opacity-80">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="hsl(var(--primary))" className="opacity-85">
               <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
             </svg>
           </motion.div>
@@ -131,24 +135,28 @@ export default function InteractiveCat() {
           <motion.div
             key={`star-${i}`}
             className="pointer-events-none absolute"
+            style={{
+              left: `${25 + Math.random() * 50}%`,
+              top: `${30 + Math.random() * 45}%`,
+            }}
             initial={{
               opacity: 1,
-              x: 20 + Math.random() * 80,
-              y: 20 + Math.random() * 60,
               scale: 0,
+              x: 0,
+              y: 0,
             }}
             animate={{
               opacity: 0,
               scale: [0, 1.8, 0],
-              y: [20 + Math.random() * 60, -20 - Math.random() * 30],
-              x: [20 + Math.random() * 80, 20 + Math.random() * 80 + (Math.random() - 0.5) * 40],
+              y: -100 - Math.random() * 50,
+              x: (Math.random() - 0.5) * 100,
               rotate: 360,
             }}
             transition={{ duration: 1.2, delay: i * 0.05, ease: "easeOut" }}
           >
             <svg 
-              width="14" 
-              height="14" 
+              width="16" 
+              height="16" 
               viewBox="0 0 24 24" 
               fill={i % 3 === 0 ? "hsl(45, 100%, 60%)" : i % 3 === 1 ? "hsl(175, 90%, 55%)" : "hsl(var(--primary))"} 
               className="opacity-95"
@@ -164,7 +172,7 @@ export default function InteractiveCat() {
           initial={{ opacity: 0, scale: 0.5, y: 10 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.5 }}
-          className="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-card px-3 py-1 text-xs font-medium text-foreground shadow-lg border border-border"
+          className="absolute -top-14 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-card px-3 py-1 text-xs font-medium text-foreground shadow-lg border border-border"
         >
           {mood === "happy" && "Purrrr~"}
           {mood === "tickled" && "MMMmmmm💕"}
@@ -177,8 +185,8 @@ export default function InteractiveCat() {
         className="relative"
       >
         <svg
-          width="260"
-          height="260"
+          width="340"
+          height="340"
           viewBox="0 0 85 90"
           onClick={handlePet}
           onDoubleClick={handleTickle}
